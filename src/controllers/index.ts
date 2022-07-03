@@ -1,5 +1,4 @@
 import { Request, Response } from 'express'
-import sharp from 'sharp'
 import path from 'path'
 import fs from 'fs'
 import { greyscaleSharp, resizeSharp } from '../services'
@@ -63,16 +62,17 @@ export class baseController {
 			try {
 				if (fs.existsSync(inFile)) {
 					if (!fs.existsSync(outFile)) {
-						const output = await resizeSharp(inFile, outFile, width, height) as string
+						const output = (await resizeSharp(
+							inFile,
+							outFile,
+							width,
+							height,
+						)) as string
 						if (output !== 'Error') {
-							res
-								.status(200)
-								.sendFile(output, { root: `${process.cwd()}` })
+							res.status(200).sendFile(output, { root: `${process.cwd()}` })
 							console.log('The file was resized')
 						} else {
-							res
-								.status(400)
-								.send('Error - could not resize the file')
+							res.status(400).send('Error - could not resize the file')
 							console.log('Error - could not resize the file')
 						}
 						return
@@ -105,16 +105,12 @@ export class baseController {
 			try {
 				if (fs.existsSync(inFile)) {
 					if (!fs.existsSync(outFile)) {
-						const output = await greyscaleSharp(inFile, outFile) as string
+						const output = (await greyscaleSharp(inFile, outFile)) as string
 						if (output !== 'Error') {
-							res
-								.status(200)
-								.sendFile(output, { root: `${process.cwd()}` })
-								console.log('The file was greyscaled')
+							res.status(200).sendFile(output, { root: `${process.cwd()}` })
+							console.log('The file was greyscaled')
 						} else {
-							res
-								.status(400)
-								.send('Error - could not greyscale the file')
+							res.status(400).send('Error - could not greyscale the file')
 							console.log('Error - could not greyscale the file')
 						}
 						return
@@ -133,7 +129,6 @@ export class baseController {
 			}
 		}
 	}
-
 }
 
 export default new baseController()
