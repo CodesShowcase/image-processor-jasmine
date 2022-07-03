@@ -1,6 +1,7 @@
 import app from '../index'
 import supertest from 'supertest'
 import fs from 'fs'
+import { greyscaleSharp, resizeSharp } from '../services'
 
 const request = supertest(app)
 
@@ -45,13 +46,10 @@ describe('Controller Tests', (): void => {
 	})
 
 	it('Controller | Should return resized image', async (): Promise<void> => {
-		fs.unlink('./images/resized/fjord-400-200.jpg', (err) => {
-			if (err) throw err
-		})
-		const response = await request.get(
-			`/api/resize?file=fjord&width=400&height=200`,
-		)
-		expect(response.files).toBeTrue
+		fs.unlink('./images/resized/fjord-400-200.jpg', (err) => { if (err) throw err	})
+		const response = await resizeSharp('./images/fjord.jpg', './images/resized/fjord-400-200.jpg', 400, 200)
+		fs.unlink('./images/resized/fjord-400-200.jpg', (err) => { if (err) throw err	})
+		expect(response).not.toBe('Error',)
 	})
 
 	it('Controller | Resize some parameters are missing Parameters', async (): Promise<void> => {
@@ -62,10 +60,9 @@ describe('Controller Tests', (): void => {
 	})
 
 	it('Controller | Should return greyscaled image', async (): Promise<void> => {
-		fs.unlink('./images/greyscaled/fjord.jpg', (err) => {
-			if (err) throw err
-		})
+		fs.unlink('./images/greyscaled/fjord.jpg', (err) => { if (err) throw err })
 		const response = await request.get(`/api/greyscale?file=fjord`)
+		fs.unlink('./images/greyscaled/fjord.jpg', (err) => { if (err) throw err })
 		expect(response.files).toBeTrue
 	})
 })
