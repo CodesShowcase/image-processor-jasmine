@@ -73,17 +73,13 @@ class baseController {
                 try {
                     if (fs_1.default.existsSync(inFile)) {
                         if (!fs_1.default.existsSync(outFile)) {
-                            const output = yield (0, services_1.resizeSharp)(inFile, outFile, width, height);
+                            const output = (yield (0, services_1.resizeSharp)(inFile, outFile, width, height));
                             if (output !== 'Error') {
-                                res
-                                    .status(200)
-                                    .sendFile(output, { root: `${process.cwd()}` });
+                                res.status(200).sendFile(output, { root: `${process.cwd()}` });
                                 console.log('The file was resized');
                             }
                             else {
-                                res
-                                    .status(400)
-                                    .send('Error - could not resize the file');
+                                res.status(400).send('Error - could not resize the file');
                                 console.log('Error - could not resize the file');
                             }
                             return;
@@ -119,17 +115,13 @@ class baseController {
                 try {
                     if (fs_1.default.existsSync(inFile)) {
                         if (!fs_1.default.existsSync(outFile)) {
-                            const output = yield (0, services_1.greyscaleSharp)(inFile, outFile);
+                            const output = (yield (0, services_1.greyscaleSharp)(inFile, outFile));
                             if (output !== 'Error') {
-                                res
-                                    .status(200)
-                                    .sendFile(output, { root: `${process.cwd()}` });
+                                res.status(200).sendFile(output, { root: `${process.cwd()}` });
                                 console.log('The file was greyscaled');
                             }
                             else {
-                                res
-                                    .status(400)
-                                    .send('Error - could not greyscale the file');
+                                res.status(400).send('Error - could not greyscale the file');
                                 console.log('Error - could not greyscale the file');
                             }
                             return;

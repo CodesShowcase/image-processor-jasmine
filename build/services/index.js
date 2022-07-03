@@ -17,9 +17,7 @@ const sharp_1 = __importDefault(require("sharp"));
 const fs_1 = __importDefault(require("fs"));
 function greyscaleSharp(inFile, outFile) {
     return __awaiter(this, void 0, void 0, function* () {
-        yield (0, sharp_1.default)(inFile)
-            .greyscale()
-            .toFile(outFile);
+        yield (0, sharp_1.default)(inFile).greyscale().toFile(outFile);
         if (fs_1.default.existsSync(outFile)) {
             return outFile;
         }
@@ -31,9 +29,7 @@ function greyscaleSharp(inFile, outFile) {
 exports.greyscaleSharp = greyscaleSharp;
 function resizeSharp(inFile, outFile, width, height) {
     return __awaiter(this, void 0, void 0, function* () {
-        yield (0, sharp_1.default)(inFile)
-            .resize(width, height)
-            .toFile(outFile);
+        yield (0, sharp_1.default)(inFile).resize(width, height).toFile(outFile);
         if (fs_1.default.existsSync(outFile)) {
             return outFile;
         }
