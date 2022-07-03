@@ -7,7 +7,10 @@ This is an Image Processing API, allowing you to view, resize and greyscale imag
 Installation =\> Change to root directory and type in *npm i*  
 Start =\> Start the application with *npm start* | default port is 8080  
 Build =\> Build the Application in the build folder with *npm run build*  
+Lint =\> Run *npm run lint*
+Prettier =\> Run *npm run prettier*
 Tests =\> Tests can be run with *npm run test*  
+
 
 ## Usage
 

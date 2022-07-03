@@ -1,7 +1,7 @@
 import express from 'express'
 import baseController from '../controllers'
 
-const router = express.Router()
+const router: express.Router = express.Router()
 
 router.get('/', (req, res) => {
 	let usage =

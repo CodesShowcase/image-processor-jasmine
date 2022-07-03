@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const index_1 = __importDefault(require("../index"));
 const supertest_1 = __importDefault(require("supertest"));
+const fs_1 = __importDefault(require("fs"));
 const request = (0, supertest_1.default)(index_1.default);
 describe('Route Tests', () => {
     it('Route | Root => Should return status 200', () => __awaiter(void 0, void 0, void 0, function* () {
@@ -47,6 +48,8 @@ describe('Controller Tests', () => {
         expect(response.files).toBeTrue;
     }));
     it('Controller | Should return resized image', () => __awaiter(void 0, void 0, void 0, function* () {
+        fs_1.default.unlink('./images/resized/fjord-400-200.jpg', err => { if (err)
+            throw err; });
         const response = yield request.get(`/api/resize?file=fjord&width=400&height=200`);
         expect(response.files).toBeTrue;
     }));
@@ -55,6 +58,8 @@ describe('Controller Tests', () => {
         expect(response.text).toBe('Parameters are missing => /api/resize?file=name&width=pixel&height=pixel');
     }));
     it('Controller | Should return greyscaled image', () => __awaiter(void 0, void 0, void 0, function* () {
+        fs_1.default.unlink('./images/greyscaled/fjord.jpg', err => { if (err)
+            throw err; });
         const response = yield request.get(`/api/greyscale?file=fjord`);
         expect(response.files).toBeTrue;
     }));
