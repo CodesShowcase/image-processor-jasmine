@@ -46,16 +46,16 @@ describe('Controller Tests', (): void => {
 	})
 
 	it('Controller | Should return resized image', async (): Promise<void> => {
-		fs.unlink('./images/resized/fjord-400-200.jpg', (err) => {
+		fs.unlink('./images/fjord-resized-400-200.jpg', (err) => {
 			if (err) throw err
 		})
 		const response = await resizeSharp(
 			'./images/fjord.jpg',
-			'./images/resized/fjord-400-200.jpg',
+			'./images/fjord-resized-400-200.jpg',
 			400,
 			200,
 		)
-		fs.unlink('./images/resized/fjord-400-200.jpg', (err) => {
+		fs.unlink('./images/fjord-resized-400-200.jpg', (err) => {
 			if (err) throw err
 		})
 		expect(response).not.toBe('Error')
@@ -69,11 +69,11 @@ describe('Controller Tests', (): void => {
 	})
 
 	it('Controller | Should return greyscaled image', async (): Promise<void> => {
-		fs.unlink('./images/greyscaled/fjord.jpg', (err) => {
+		fs.unlink('./images/fjord-greyscaled.jpg', (err) => {
 			if (err) throw err
 		})
 		const response = await request.get(`/api/greyscale?file=fjord`)
-		fs.unlink('./images/greyscaled/fjord.jpg', (err) => {
+		fs.unlink('./images/fjord-greyscaled.jpg', (err) => {
 			if (err) throw err
 		})
 		expect(response.files).toBeTrue

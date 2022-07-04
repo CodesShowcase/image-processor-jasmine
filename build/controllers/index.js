@@ -62,7 +62,7 @@ class baseController {
             const width = parseInt(req.query.width);
             const height = parseInt(req.query.height);
             const inFile = `./images/${file}.jpg`;
-            const outFile = `./images/resized/${file}-${width}-${height}.jpg`;
+            const outFile = `./images/${file}-resized-${width}-${height}.jpg`;
             if (!file || !width || !height) {
                 res
                     .status(400)
@@ -106,7 +106,7 @@ class baseController {
         return __awaiter(this, void 0, void 0, function* () {
             const file = req.query.file;
             const inFile = `./images/${file}.jpg`;
-            const outFile = `./images/greyscaled/${file}.jpg`;
+            const outFile = `./images/${file}-greyscaled.jpg`;
             if (!file) {
                 res.status(400).send('Parameters are missing => /api/greyscale?file=name');
                 return;

@@ -49,7 +49,7 @@ export class baseController {
 		const height = parseInt(req.query.height as string)
 
 		const inFile = `./images/${file}.jpg` as string
-		const outFile = `./images/resized/${file}-${width}-${height}.jpg` as string
+		const outFile = `./images/${file}-resized-${width}-${height}.jpg` as string
 
 		if (!file || !width || !height) {
 			res
@@ -96,7 +96,7 @@ export class baseController {
 		const file = req.query.file as string
 
 		const inFile = `./images/${file}.jpg` as string
-		const outFile = `./images/greyscaled/${file}.jpg` as string
+		const outFile = `./images/${file}-greyscaled.jpg` as string
 
 		if (!file) {
 			res.status(400).send('Parameters are missing => /api/greyscale?file=name')

@@ -49,12 +49,12 @@ describe('Controller Tests', () => {
         expect(response.files).toBeTrue;
     }));
     it('Controller | Should return resized image', () => __awaiter(void 0, void 0, void 0, function* () {
-        fs_1.default.unlink('./images/resized/fjord-400-200.jpg', (err) => {
+        fs_1.default.unlink('./images/fjord-resized-400-200.jpg', (err) => {
             if (err)
                 throw err;
         });
-        const response = yield (0, services_1.resizeSharp)('./images/fjord.jpg', './images/resized/fjord-400-200.jpg', 400, 200);
-        fs_1.default.unlink('./images/resized/fjord-400-200.jpg', (err) => {
+        const response = yield (0, services_1.resizeSharp)('./images/fjord.jpg', './images/fjord-resized-400-200.jpg', 400, 200);
+        fs_1.default.unlink('./images/fjord-resized-400-200.jpg', (err) => {
             if (err)
                 throw err;
         });
@@ -65,12 +65,12 @@ describe('Controller Tests', () => {
         expect(response.text).toBe('Parameters are missing => /api/resize?file=name&width=pixel&height=pixel');
     }));
     it('Controller | Should return greyscaled image', () => __awaiter(void 0, void 0, void 0, function* () {
-        fs_1.default.unlink('./images/greyscaled/fjord.jpg', (err) => {
+        fs_1.default.unlink('./images/fjord-greyscaled.jpg', (err) => {
             if (err)
                 throw err;
         });
         const response = yield request.get(`/api/greyscale?file=fjord`);
-        fs_1.default.unlink('./images/greyscaled/fjord.jpg', (err) => {
+        fs_1.default.unlink('./images/fjord-greyscaled.jpg', (err) => {
             if (err)
                 throw err;
         });
